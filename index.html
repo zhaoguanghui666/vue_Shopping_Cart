@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="stop">
+        <div class="title">
+            <li class="head">
+                <h3>商品名称</h3>
+            </li>
+            <li class="head">
+                <h3>商品价格</h3>
+            </li>
+            <li class="head">
+                <h3>已选数量</h3>
+            </li>
+            <li class="head">
+                <h3>修改</h3>
+            </li>
+            <li class="head">
+                <h3>小计</h3>
+            </li>
+        </div>
+        <ul class="_ul" v-for="(item,index) in sq">
+            <li>{{item.name}}</li>
+            <li>￥{{item.pic}}</li>
+            <li>
+                <button @click='increase(index)'>+</button>
+                <span>{{item.Selected}}</span>
+                <button @click="reduce(index)">-</button>
+            </li>
+            <li>
+                <button @click="sc(index)">删除</button>
+            </li>
+            <li>{{item.Subtotal}}</li>
+        </ul>
+        <h2>总计:{{Total}}</h2>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                Total: 0,
+                lengt: 0,
+                sq: [
+                    {
+                        name: '香蕉',
+                        pic: 80,
+                        Selected: 1,
+                        Subtotal: 80,
+                    },
+                    {
+                        name: '苹果',
+                        pic: 65,
+                        Selected: 1,
+                        Subtotal: 65,
+                    },
+                    {
+                        name: '凤梨',
+                        pic: 35,
+                        Selected: 1,
+                        Subtotal: 35,
+                    },
+                    {
+                        name: '西瓜',
+                        pic: 23,
+                        Selected: 1,
+                        Subtotal: 23,
+                    }
+                ]
+            },
+            mounted: function () {
+                this.lengt = this.sq.length;
+                console.log(this.lengt);
+                for (let i = 0; i < this.lengt; i++) {
+                    this.Total +=  this.sq[i].Subtotal;
+                }
+
+            },
+            methods: {
+                increase(e) {
+                    this.sq[e].Selected++;
+                    this.sq[e].Subtotal = this.sq[e].Subtotal + this.sq[e].pic;
+                    this.Total = this.Total + this.sq[e].pic;
+                },
+                reduce(e) {
+                    if (this.sq[e].Selected > 1) {
+                        this.sq[e].Selected--;
+                        this.sq[e].Subtotal = this.sq[e].Subtotal - this.sq[e].pic;
+                        this.Total = this.Total - this.sq[e].pic;
+                    } else {
+                        this.Total -= this.sq[e].pic;
+                        this.sq.splice(e, 1);
+                    }
+                },
+                sc(e) {
+                    this.Total = this.Total - this.sq[e].Subtotal;
+                    this.sq.splice(e, 1);
+                    alert('删除成功!');
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

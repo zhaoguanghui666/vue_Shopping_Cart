@@ -1,0 +1,50 @@
+html{
+    font-size: 20px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li{ padding:0;margin:0;list-style:none}
+.stop{
+    text-align: center;
+    margin-top: 5rem;
+    width:60rem;
+}
+.title{
+    text-align: center;
+    margin-left: 10rem;
+}
+.head{
+    text-align: center;
+    display: block;
+    width: 10rem;
+    height: 3rem;
+    float: left;
+    background-color: darkgrey;
+}
+.head>h3{
+    display: block;
+    text-align: center;
+    margin-top: 0.7rem;
+}
+._ul{
+    text-align: center;
+    margin-left: 10rem;
+}
+._ul>li{
+    text-align: center;
+    display: block;
+    width: 10rem;
+    height: 3rem;
+    float: left;
+    margin-top: 0.5rem;
+    border-bottom: solid 1px #000;
+}
+button{
+    width: 2rem;
+    height: 1rem;
+}
+h2{
+    float: right;
+}
